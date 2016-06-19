@@ -1,13 +1,16 @@
 # DuckDuckGo Instant Answers Search (for Slack)
 
 Slash command for searching Instant Answers right from the chat window on Slack
+> Search results will be visible to you only
 
 ### Usage
 
-Enter the following command in your Slack chat box (results will be visible to you only)
+Enter the following command in your Slack chat box and press Enter:
 ```
 /ddg [your query]
 ```
+
+### Demo
 
 ```
 /ddg python
