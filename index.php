@@ -4,7 +4,7 @@
  * @Author: sahildua2305
  * @Date:   2016-06-19 19:58:20
  * @Last Modified by:   sahildua2305
- * @Last Modified time: 2016-06-20 01:12:46
+ * @Last Modified time: 2016-06-20 01:22:22
  */
 
 header('Content-Type: application/json');
@@ -64,6 +64,7 @@ else{
     $r = array();
     $r["title"] = "DuckDuckGo Search Results";
     $r["title_link"] = "https://duckduckgo.com/?q=" . urlencode($text);
+    $r["color"] = "#DE5833";
     $r["text"] = $output;
 
     $response["attachments"][0] = $r;
