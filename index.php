@@ -4,7 +4,7 @@
  * @Author: sahildua2305
  * @Date:   2016-06-19 19:58:20
  * @Last Modified by:   sahildua2305
- * @Last Modified time: 2016-06-20 02:02:48
+ * @Last Modified time: 2016-06-20 02:11:05
  */
 
 /**
@@ -30,12 +30,14 @@ if((!isset($_POST['team_id']) || $_POST['team_id'] !== $TEAM_ID) ||
 /**
  * Text that is to be searched
  * Whatever user types after the matching slash command, comes here
+ * We will split this string into words for matching purpose
  *
  * For example, if `/ddg` is the slash command for your this integration
  * and user enters `/ddg url encode`, `url encode` will go into this variable
- * @var string
+ * @var array
  */
-$text = $_POST['text'];
+$query = $_POST['text'];
+$text_array = explode(" ", $query);
 
 /**
  * URL of the file containing the Instant Answers json data
@@ -75,15 +77,18 @@ foreach($ia_list as $ia) {
      * Search for given text in both name as well as description
      * of the Instant Answer
      */
-    if((strpos(strtolower($name), strtolower($text)) !== false) ||
-        (strpos(strtolower($description), strtolower($text)) !== false)) {
+    foreach($text_array as $text) {
+        if((strpos(strtolower($name), strtolower($text)) !== false) ||
+            (strpos(strtolower($description), strtolower($text)) !== false)) {
 
-        $temp = array();
-        $temp["name"] = $name;
-        $temp["description"] = $description;
-        $temp["id"] = $ia["id"];
-        array_push($filtered_list, $temp);
+            $temp = array();
+            $temp["name"] = $name;
+            $temp["description"] = $description;
+            $temp["id"] = $ia["id"];
+            array_push($filtered_list, $temp);
 
+            break;
+        }
     }
 }
 
@@ -116,7 +121,7 @@ if(strlen($output) == 0){
     $response["text"] = ":interrobang: Sorry! No results found.";
 }
 else{
-    $response["text"] = "This is how search results look like for " . $text;
+    $response["text"] = "This is how search results look like for " . $query;
 
     /**
      * `attachments` consists of list of all attachments to be returned
