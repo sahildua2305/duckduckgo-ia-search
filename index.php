@@ -4,7 +4,7 @@
  * @Author: sahildua2305
  * @Date:   2016-06-19 19:58:20
  * @Last Modified by:   sahildua2305
- * @Last Modified time: 2016-06-20 01:51:17
+ * @Last Modified time: 2016-06-20 02:02:48
  */
 
 /**
@@ -75,10 +75,8 @@ foreach($ia_list as $ia) {
      * Search for given text in both name as well as description
      * of the Instant Answer
      */
-    if((strpos($name, $text) !== false) ||
-        (strpos($description, $text) !== false) ||
-        (strpos($name, strtoupper($text)) !== false) ||
-        (strpos($description, strtoupper($text)) !== false)) {
+    if((strpos(strtolower($name), strtolower($text)) !== false) ||
+        (strpos(strtolower($description), strtolower($text)) !== false)) {
 
         $temp = array();
         $temp["name"] = $name;
@@ -132,7 +130,7 @@ else{
      * @var array
      */
     $r = array();
-    $r["title"] = "DuckDuckGo Search Results";
+    $r["title"] = "DuckDuckGo Search Results (" . count($filtered_list) . ")";
     $r["title_link"] = "https://duckduckgo.com/?q=" . urlencode($text);
     $r["color"] = "#DE5833";
     $r["text"] = $output;
