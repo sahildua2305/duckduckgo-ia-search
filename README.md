@@ -1,6 +1,6 @@
 # DuckDuckGo Instant Answers Search (for Slack)
 
-Slash command for searching Instant Answers right from the chat window on Slack
+Slash command for searching Instant Answers right from the chat window on Slack :speech_balloon:
 > Search results will be visible to you only
 
 ### Usage
