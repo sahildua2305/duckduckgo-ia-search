@@ -4,12 +4,12 @@
  * @Author: sahildua2305
  * @Date:   2016-06-19 19:58:20
  * @Last Modified by:   sahildua2305
- * @Last Modified time: 2016-06-20 00:12:31
+ * @Last Modified time: 2016-06-20 00:38:11
  */
 
 header('Content-Type: application/json');
 
-include 'config/slack-secrets.php';
+include 'slack-secrets.php';
 
 // Verification
 if((!isset($_POST['team_id']) || $_POST['team_id'] !== $TEAM_ID) ||
@@ -26,8 +26,27 @@ $text = "url";
 $url = "ia-data.json";
 
 $str = file_get_contents($url);
-$json = json_decode($str, true);
-print_r($json);
+$ia_list = json_decode($str, true);
+
+$filtered_list = array();
+
+foreach($ia_list as $ia) {
+    $description = $ia["description"];
+    $name = $ia["name"];
+
+    if((strpos($name, $text) !== false) ||
+        (strpos($description, $text) !== false) ||
+        (strpos($name, strtoupper($text)) !== false) ||
+        (strpos($description, strtoupper($text)) !== false)) {
+        $temp = array();
+        $temp["name"] = $name;
+        $temp["description"] = $description;
+        $temp["id"] = $ia["id"];
+        array_push($filtered_list, $temp);
+    }
+}
+
+print_r($filtered_list);
 
 $response = array();
 $response["text"] = "This is how search results look like for " . $text;
