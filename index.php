@@ -4,7 +4,7 @@
  * @Author: sahildua2305
  * @Date:   2016-06-19 19:58:20
  * @Last Modified by:   sahildua2305
- * @Last Modified time: 2016-06-20 00:54:52
+ * @Last Modified time: 2016-06-20 01:03:09
  */
 
 header('Content-Type: application/json');
@@ -48,11 +48,9 @@ foreach($ia_list as $ia) {
 $output = "";
 
 foreach($filtered_list as $ia) {
-    $output .= '<a href="https://duck.co/ia/view/' . $ia["id"] . '" target="_blank">';
-    $output .= $ia["name"];
-    $output .= '</a> ';
-    $output .= $ia["description"];
-    $output .= '\n';
+    $output .= '<https://duck.co/ia/view/' . $ia["id"] . '|' . $ia["name"] . '>';
+    // $output .= $ia["description"];
+    $output .= "\n";
 }
 
 $response = array();
