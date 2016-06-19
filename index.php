@@ -4,7 +4,7 @@
  * @Author: sahildua2305
  * @Date:   2016-06-19 19:58:20
  * @Last Modified by:   sahildua2305
- * @Last Modified time: 2016-06-20 01:03:09
+ * @Last Modified time: 2016-06-20 01:12:46
  */
 
 header('Content-Type: application/json');
@@ -49,19 +49,24 @@ $output = "";
 
 foreach($filtered_list as $ia) {
     $output .= '<https://duck.co/ia/view/' . $ia["id"] . '|' . $ia["name"] . '>';
-    // $output .= $ia["description"];
     $output .= "\n";
 }
 
 $response = array();
-$response["text"] = "This is how search results look like for " . $text;
-$response["attachments"] = array(array());
 
-$r = array();
-$r["title"] = "DuckDuckGo Search Results";
-$r["title_link"] = "https://duckduckgo.com/?q=" . urlencode($text);
-$r["text"] = $output;
+if(strlen($output) == 0){
+    $response["text"] = "Sorry! No results found.";
+}
+else{
+    $response["text"] = "This is how search results look like for " . $text;
+    $response["attachments"] = array(array());
 
-$response["attachments"][0] = $r;
+    $r = array();
+    $r["title"] = "DuckDuckGo Search Results";
+    $r["title_link"] = "https://duckduckgo.com/?q=" . urlencode($text);
+    $r["text"] = $output;
+
+    $response["attachments"][0] = $r;
+}
 
 echo json_encode($response);
