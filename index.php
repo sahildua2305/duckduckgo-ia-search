@@ -4,7 +4,7 @@
  * @Author: sahildua2305
  * @Date:   2016-06-19 19:58:20
  * @Last Modified by:   sahildua2305
- * @Last Modified time: 2016-06-20 02:11:05
+ * @Last Modified time: 2016-06-20 02:25:35
  */
 
 /**
@@ -70,8 +70,8 @@ $filtered_list = array();
  */
 foreach($ia_list as $ia) {
 
-    $description = $ia["description"];
     $name = $ia["name"];
+    $description = $ia["description"];
 
     /**
      * Search for given text in both name as well as description
@@ -83,8 +83,8 @@ foreach($ia_list as $ia) {
 
             $temp = array();
             $temp["name"] = $name;
-            $temp["description"] = $description;
             $temp["id"] = $ia["id"];
+            $temp["type"] = ucfirst($ia["repo"])[0];
             array_push($filtered_list, $temp);
 
             break;
@@ -103,7 +103,7 @@ $output = "";
  * and concatenate all the links
  */
 foreach($filtered_list as $ia) {
-    $output .= '<https://duck.co/ia/view/' . $ia["id"] . '|' . $ia["name"] . '>';
+    $output .= '(' . $ia["type"] . ') <https://duck.co/ia/view/' . $ia["id"] . '|' . $ia["name"] . '>';
     $output .= "\n";
 }
 
