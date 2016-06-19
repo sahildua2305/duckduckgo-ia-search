@@ -12,7 +12,9 @@ Enter the following command in your Slack chat box (results will be visible to y
 ```
 /ddg python
 ```
+![Python Search Results](screenshots/python-search-results.png?raw=true)
 
 ```
 /ddg url encode
 ```
+![URL Encode Search Results](screenshots/url-encode-search-results.png?raw=true)
