@@ -4,7 +4,7 @@
  * @Author: sahildua2305
  * @Date:   2016-06-19 19:58:20
  * @Last Modified by:   sahildua2305
- * @Last Modified time: 2016-06-20 02:25:35
+ * @Last Modified time: 2016-06-20 14:36:41
  */
 
 /**
@@ -21,8 +21,7 @@ include 'slack-secrets.php';
 /**
  * Validate request by matching `team_id` and `token` received from Slack
  */
-if((!isset($_POST['team_id']) || $_POST['team_id'] !== $TEAM_ID) ||
-    (!isset($_POST['token']) || $_POST['token'] !== $TOKEN)) {
+if((!isset($_POST['token']) || $_POST['token'] !== $TOKEN)) {
     die("Invalid request");
     echo "Invalid request";
 }
